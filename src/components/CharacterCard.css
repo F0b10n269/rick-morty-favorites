@@ -1,0 +1,54 @@
+.character-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.character-image {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+.character-card-body {
+  padding: 1rem;
+}
+
+.character-card-body h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+.character-detail {
+  margin: 0;
+  color: #d7e2ff;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.alive {
+  background: #4ade80;
+}
+
+.status-dot.dead {
+  background: #f87171;
+}
+
+.status-dot.unknown {
+  background: #f59e0b;
+}

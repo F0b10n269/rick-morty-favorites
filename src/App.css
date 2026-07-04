@@ -9,6 +9,13 @@
   padding: 2rem;
 }
 
+.app-container {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  gap: 1.5rem;
+}
+
 .app-header {
   text-align: center;
   border: 1px solid #4f92ff;
@@ -30,4 +37,24 @@
   margin: 0;
   font-size: 1rem;
   color: #d8e7ff;
+}
+
+.app-status,
+.app-error {
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.app-status {
+  background: rgba(64, 138, 255, 0.12);
+  border: 1px solid rgba(64, 138, 255, 0.24);
+  color: #cce0ff;
+}
+
+.app-error {
+  background: rgba(255, 97, 113, 0.12);
+  border: 1px solid rgba(255, 97, 113, 0.24);
+  color: #ffb3b3;
 }
