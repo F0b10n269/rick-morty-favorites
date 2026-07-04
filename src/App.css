@@ -76,6 +76,19 @@
   gap: 1rem;
 }
 
+/* Stats layout inside main-content */
+.main-content > .stats-container {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+  .main-content > .stats-container {
+    justify-content: space-between;
+    padding: 0 0.5rem;
+  }
+}
+
 @media (max-width: 980px) {
   .side-panel {
     width: 100%;

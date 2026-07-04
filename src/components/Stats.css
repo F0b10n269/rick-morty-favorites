@@ -1,0 +1,36 @@
+.stats-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.stat-card {
+  background: #ffffff;
+  color: #071233;
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  min-width: 120px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.08);
+}
+
+.stat-number {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  margin-top: 0.35rem;
+  font-size: 0.88rem;
+  color: #475569;
+}
+
+@media (max-width: 520px) {
+  .stat-card {
+    min-width: 100px;
+    padding: 0.7rem 0.9rem;
+  }
+}

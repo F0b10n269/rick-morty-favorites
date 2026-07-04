@@ -5,6 +5,7 @@ import { useLocalStorage } from './hooks/useLocalStorage'
 import CharacterList from './components/CharacterList'
 import FavoritesPanel from './components/FavoritesPanel'
 import BlockedPanel from './components/BlockedPanel'
+import Stats from './components/Stats'
 import SearchBar from './components/SearchBar'
 
 function App() {
@@ -63,6 +64,8 @@ function App() {
             <h1>Rick and Morty - Favoritos</h1>
             <p className="integrantes">Integrantes: Fabian Calderon</p>
           </header>
+
+          <Stats total={characters.length} favorites={favoriteCharacters.length} blocked={blockedIds.length} />
 
           <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
 
