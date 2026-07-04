@@ -1,14 +1,24 @@
+.character-count {
+  margin-bottom: 0.75rem;
+  color: #dbeafe;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
 .character-list {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 280px));
+  justify-content: center;
 }
 
 .character-empty {
-  color: #ffd1d1;
-  padding: 2rem;
+  color: #dbeafe;
+  padding: 1.75rem;
   text-align: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+  max-width: 720px;
+  margin: 0 auto;
 }

@@ -7,7 +7,7 @@ function SearchBar({ searchTerm, onSearchChange }) {
         type="text"
         value={searchTerm}
         onChange={(event) => onSearchChange(event.target.value)}
-        placeholder="🔍 Buscar personaje por nombre..."
+        placeholder="Buscar personaje por nombre..."
         className="search-input"
       />
     </div>

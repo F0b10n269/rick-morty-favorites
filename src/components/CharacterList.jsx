@@ -1,7 +1,7 @@
 import './CharacterList.css'
 import CharacterCard from './CharacterCard'
 
-function CharacterList({ characters }) {
+function CharacterList({ characters, favorites, onToggleFavorite }) {
   if (!characters || characters.length === 0) {
     return (
       <div className="character-empty">
@@ -15,7 +15,12 @@ function CharacterList({ characters }) {
       <div className="character-count">Mostrando {characters.length} personajes</div>
       <section className="character-list">
         {characters.map((character) => (
-          <CharacterCard key={character.id} character={character} />
+          <CharacterCard
+            key={character.id}
+            character={character}
+            isFavorite={favorites.includes(character.id)}
+            onToggleFavorite={onToggleFavorite}
+          />
         ))}
       </section>
     </>

@@ -6,6 +6,12 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.character-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124, 194, 255, 0.24);
 }
 
 .character-image {
@@ -19,9 +25,40 @@
   padding: 1rem;
 }
 
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
 .character-card-body h2 {
   margin: 0 0 0.5rem;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.favorite-button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #eef2ff;
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.favorite-button:hover {
+  background: rgba(124, 194, 255, 0.18);
+  border-color: rgba(124, 194, 255, 0.4);
+}
+
+.favorite-button.active {
+  background: #2563eb;
+  border-color: #60a5fa;
   color: #ffffff;
 }
 
