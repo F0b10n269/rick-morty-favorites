@@ -4,6 +4,7 @@ import { useFetch } from './hooks/useFetch'
 import { useLocalStorage } from './hooks/useLocalStorage'
 import CharacterList from './components/CharacterList'
 import FavoritesPanel from './components/FavoritesPanel'
+import BlockedPanel from './components/BlockedPanel'
 import SearchBar from './components/SearchBar'
 
 function App() {
@@ -12,26 +13,46 @@ function App() {
   const { data, loading, error } = useFetch('https://rickandmortyapi.com/api/character')
   const characters = data?.results || []
 
+  const [blockedIds, setBlockedIds] = useLocalStorage('rm-blocked', [])
+
   const filteredCharacters = useMemo(() => {
     const normalizedSearch = searchTerm.trim().toLowerCase()
-    if (!normalizedSearch) return characters
+    const list = characters.filter((c) => !blockedIds.includes(c.id))
+    if (!normalizedSearch) return list
 
-    return characters.filter((character) =>
+    return list.filter((character) =>
       character.name.toLowerCase().includes(normalizedSearch)
     )
-  }, [characters, searchTerm])
+  }, [characters, searchTerm, blockedIds])
 
   const favoriteCharacters = useMemo(
-    () => characters.filter((character) => favoriteIds.includes(character.id)),
-    [characters, favoriteIds]
+    () => characters.filter((character) => favoriteIds.includes(character.id) && !blockedIds.includes(character.id)),
+    [characters, favoriteIds, blockedIds]
   )
 
   const toggleFavorite = (characterId) => {
+    // prevent adding favorites for blocked items
+    if (blockedIds.includes(characterId)) return
+
     setFavoriteIds((currentFavorites) =>
       currentFavorites.includes(characterId)
         ? currentFavorites.filter((id) => id !== characterId)
         : [...currentFavorites, characterId]
     )
+  }
+
+  const toggleBlock = (characterId) => {
+    setBlockedIds((current) => {
+      const isBlocked = current.includes(characterId)
+      if (isBlocked) {
+        // unblocking
+        return current.filter((id) => id !== characterId)
+      }
+
+      // blocking: also remove from favorites
+      setFavoriteIds((fav) => fav.filter((id) => id !== characterId))
+      return [...current, characterId]
+    })
   }
 
   return (
@@ -48,15 +69,20 @@ function App() {
           {loading && <div className="app-status">Cargando personajes...</div>}
           {error && <div className="app-error">Error: {error}</div>}
           {!loading && !error && (
-            <CharacterList
-              characters={filteredCharacters}
-              favorites={favoriteIds}
-              onToggleFavorite={toggleFavorite}
-            />
-          )}
+              <CharacterList
+                characters={filteredCharacters}
+                favorites={favoriteIds}
+                blocked={blockedIds}
+                onToggleFavorite={toggleFavorite}
+                onToggleBlock={toggleBlock}
+              />
+            )}
         </section>
 
-        <FavoritesPanel favorites={favoriteCharacters} />
+          <aside className="side-panel">
+            <FavoritesPanel favorites={favoriteCharacters} />
+            <BlockedPanel blocked={blockedIds} blockedCharacters={characters.filter(c => blockedIds.includes(c.id))} onUnblock={toggleBlock} />
+          </aside>
       </main>
     </div>
   )

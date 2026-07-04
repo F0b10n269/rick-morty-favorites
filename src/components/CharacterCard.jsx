@@ -1,6 +1,6 @@
 import './CharacterCard.css'
 
-function CharacterCard({ character, isFavorite, onToggleFavorite }) {
+function CharacterCard({ character, isFavorite, isBlocked, onToggleFavorite, onToggleBlock }) {
   const getStatusClass = (status) => {
     if (status === 'Alive') return 'alive'
     if (status === 'Dead') return 'dead'
@@ -8,7 +8,7 @@ function CharacterCard({ character, isFavorite, onToggleFavorite }) {
   }
 
   return (
-    <article className="character-card">
+    <article className={`character-card ${isBlocked ? 'blocked' : ''}`}>
       <img
         className="character-image"
         src={character.image}
@@ -17,13 +17,23 @@ function CharacterCard({ character, isFavorite, onToggleFavorite }) {
       <div className="character-card-body">
         <div className="card-top-row">
           <h2>{character.name}</h2>
-          <button
-            type="button"
-            className={`favorite-button ${isFavorite ? 'active' : ''}`}
-            onClick={() => onToggleFavorite(character.id)}
-          >
-            {isFavorite ? '☆ Quitar favorito' : '⭐ Añadir favorito'}
-          </button>
+          <div className="card-actions">
+            <button
+              type="button"
+              className={`favorite-button ${isFavorite ? 'active' : ''}`}
+              onClick={() => onToggleFavorite(character.id)}
+              disabled={isBlocked}
+            >
+              {isFavorite ? '☆ Quitar favorito' : '⭐ Añadir favorito'}
+            </button>
+            <button
+              type="button"
+              className={`block-button ${isBlocked ? 'active' : ''}`}
+              onClick={() => onToggleBlock(character.id)}
+            >
+              {isBlocked ? 'Desbloquear' : 'Bloquear'}
+            </button>
+          </div>
         </div>
         <p className="character-detail">
           <span className={`status-dot ${getStatusClass(character.status)}`} />

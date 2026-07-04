@@ -1,7 +1,7 @@
 import './CharacterList.css'
 import CharacterCard from './CharacterCard'
 
-function CharacterList({ characters, favorites, onToggleFavorite }) {
+function CharacterList({ characters, favorites = [], blocked = [], onToggleFavorite, onToggleBlock }) {
   if (!characters || characters.length === 0) {
     return (
       <div className="character-empty">
@@ -19,7 +19,9 @@ function CharacterList({ characters, favorites, onToggleFavorite }) {
             key={character.id}
             character={character}
             isFavorite={favorites.includes(character.id)}
+            isBlocked={blocked.includes(character.id)}
             onToggleFavorite={onToggleFavorite}
+            onToggleBlock={onToggleBlock}
           />
         ))}
       </section>
