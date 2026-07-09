@@ -69,3 +69,36 @@
 .unblock-button:hover {
   opacity: 0.95;
 }
+
+@media (max-width: 768px) {
+  .blocked-panel {
+    padding: 0.9rem;
+    margin-top: 0;
+  }
+
+  .blocked-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .blocked-panel {
+    padding: 0.8rem;
+    border-radius: 16px;
+  }
+
+  .blocked-item {
+    padding: 0.4rem;
+    gap: 0.6rem;
+  }
+
+  .blocked-name {
+    font-size: 0.9rem;
+  }
+
+  .unblock-button {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.55rem;
+  }
+}

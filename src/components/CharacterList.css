@@ -8,8 +8,8 @@
 .character-list {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 280px));
-  justify-content: center;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .character-empty {
@@ -21,4 +21,34 @@
   border-radius: 18px;
   max-width: 720px;
   margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .character-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .character-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .character-count {
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .character-list {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .character-empty {
+    padding: 1.25rem;
+    font-size: 0.95rem;
+  }
 }
